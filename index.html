@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Matrimonio</title>
+<link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+  <div class="wrapper">
+    <div class="container">
+      <form action="" class="menu">
+        
+        <br>
+        <div class="guest-menu">
+          <div class="searchbox">
+            <input type="text" class="search-txt" placeholder="Search">
+            <button type="submit" class="search-btn">
+              <i class="fa fa-search"></i>
+            </button>
+          </div>
+          <input type="button" class="btn btn-add-guest" id="add-guest" value="Add Guest">
+        </div>
+        <div class="guest-list-header">
+          <h4 class="list-item list-name">Name</h4>
+          <h4 class="list-item">A</h4>
+          <h4 class="list-item">B</h4>
+          <h4 class="list-item">H</h4>
+          <h4 class="list-item">I</h4>
+          <div></div>
+        </div>
+        <div class="guest-list">
+          <div class="guest">
+            <p class="family-name">Jane Doe</p>
+            <p>2</p>
+            <p>2</p>
+            <p>-</p>
+            <p>*</p>
+            <div></div>
+          </div>
+          <div class="guest">
+            <p class="family-name">John Doe</p>
+            <p>2</p>
+            <p>2</p>
+            <p>-</p>
+            <p>-</p>
+            <div></div>
+          </div>
+      </div>
+      <div class="assign-btns">
+        <label for="toggle-on"><input type="radio" id="toggle-on" name="toggle"><span class="btn toggle-btn">To Assign</span></label>
+        <label for="toggle-off"><input type="radio" id="toggle-off" name="toggle"><span class="btn toggle-btn">Assigned</span></label>
+      </div>
+      </form>
+
+      <div id="participant-modal" class="modal">
+        <div class="modal-content">
+          <form action="">
+            <span class="close">&times;</span>
+            <input type="text" placeholder="Name">
+            <input type="text" placeholder="Last Name">
+            <input type="text" placeholder="Adults">
+            <input type="text" placeholder="Babies">
+            <input type="submit">
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="table-section" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <input type="button" class="btn btn-add-table" id="add-table-btn" value="Add Table">
+      </div> 
+  </div> 
+  <script src="jquery-3.2.1.js"></script>
+  <script src="modal.js"></script>
+</body>
+</html>
