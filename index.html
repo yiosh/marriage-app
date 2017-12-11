@@ -1,82 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Marriage App</title>
-<link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
 </head>
+
 <body>
-  <div class="wrapper">
-    <div class="container">
-      <form action="" class="menu">
-        <h1>This is a test</h1>
-        <br>
-        <div class="guest-menu">
-          <div class="searchbox">
-            <input type="text" class="search-txt" placeholder="Search">
-            <button type="submit" class="search-btn">
-              <i class="fa fa-search"></i>
-            </button>
-          </div>
-          <input type="button" class="btn btn-add-guest" id="add-guest" value="Add Guest">
-        </div>
-        <div class="guest-list-header">
-          <h4 class="list-item list-name">Name</h4>
-          <h4 class="list-item">A</h4>
-          <h4 class="list-item">B</h4>
-          <h4 class="list-item">H</h4>
-          <h4 class="list-item">I</h4>
-          <div></div>
-        </div>
-        <div class="guest-list">
-          <div class="guest">
-            <p class="family-name">Jane Doe</p>
-            <p>2</p>
-            <p>2</p>
-            <p>-</p>
-            <p>*</p>
-            <div></div>
-          </div>
-          <div class="guest">
-            <p class="family-name">John Doe</p>
-            <p>2</p>
-            <p>2</p>
-            <p>-</p>
-            <p>-</p>
-            <div></div>
-          </div>
+  <div class="container">
+  <div class="section">
+    <div class="guest-menu">
+      <div class="searchbox">
+        <input type="text" class="search-txt" placeholder="Search">
+        <button type="submit" class="search-btn">
+          <i class="fa fa-search"></i>
+        </button>
       </div>
-      <div class="assign-btns">
-        <label for="toggle-on"><input type="radio" id="toggle-on" name="toggle"><span class="btn toggle-btn">To Assign</span></label>
-        <label for="toggle-off"><input type="radio" id="toggle-off" name="toggle"><span class="btn toggle-btn">Assigned</span></label>
-      </div>
-      </form>
-
-      <div id="participant-modal" class="modal">
-        <div class="modal-content">
-          <form action="">
-            <span class="close">&times;</span>
-            <input type="text" placeholder="Name">
-            <input type="text" placeholder="Last Name">
-            <input type="text" placeholder="Adults">
-            <input type="text" placeholder="Babies">
-            <input type="submit">
-          </form>
-        </div>
-      </div>
+      <input type="button" class="btn add-guest" id="add-guest" value="Add Guest">
     </div>
+    <div class="guest-list-header">
+      <h4 class="list-item list-name">Name</h4>
+      <h4 class="list-item">A</h4>
+      <h4 class="list-item">B</h4>
+      <h4 class="list-item">H</h4>
+      <h4 class="list-item">I</h4>
+      <div></div>
+    </div>
+    <div id="guest-list" class="guest-list"></div>
 
-    <div class="table-section" ondrop="drop(event)" ondragover="allowDrop(event)">
-        <input type="button" class="btn btn-add-table" id="add-table-btn" value="Add Table">
-      </div> 
-  </div> 
-  <script
-  src="https://code.jquery.com/jquery-3.2.1.js"
-  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
-  crossorigin="anonymous"></script>
-  <script src="modal.js"></script>
+    <div class="assign-btns">
+      <label for="toggle-on">
+        <input type="radio" id="toggle-on" name="toggle">
+        <span class="btn toggle-btn">To Assign</span>
+      </label>
+      <label for="toggle-off">
+        <input type="radio" id="toggle-off" name="toggle">
+        <span class="btn toggle-btn">Assigned</span>
+      </label>
+    </div>
+  </div>
+
+  <div id="guest-modal" class="modal">
+    <div class="modal-content">
+      <form action="">
+        <span class="close-btn">&times;</span>
+        <h3>Add Guest</h3> <br>
+        <label for="input-name">Name</label><br>
+        <input id="input-name" type="text"><br>
+        <label for="input-last-name">Last Name</label><br>
+        <input id="input-last-name" type="text"><br>
+        <label for="input-adults">Adults</label><br>
+        <input id="input-adults" type="text"><br>
+        <label for="input-babies">Babies</label><br>
+        <input id="input-babies" type="text"><br>
+        <label for="input-h">H</label><br>
+        <input id="input-h" type="text"><br>
+        <label for="input-intolerant">Intolerant</label><br>
+        <input id="input-intolerant" type="text"><br>
+        <input id="submit-guest" type="submit" value="Submit">
+      </form>
+    </div>
+  </div>
+    
+  <div class="section table" ondrop="drop(event)" ondragover="allowDrop(event)">
+    <input type="button" class="btn btn-add-table" id="add-table-btn" value="Add Table">
+  </div>
+  </div>
+  
+  <script src="app.js"></script>
 </body>
+
 </html>
