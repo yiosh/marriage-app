@@ -90,7 +90,7 @@ $('document').ready(() => {
 	})
 
 	$('#submit-guest').click(event => {
+		event.preventDefault();
 		handlers.addGuest();
-		e.preventDefault();
 	});
 });
