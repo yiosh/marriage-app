@@ -58,7 +58,7 @@ body {
   margin: 0em 1em 0em 0em;
 }
 
-.searchbox {
+.textbox {
   display: grid;
   grid-template-columns: 80% 20%;
   margin: 0em 1em;
@@ -78,7 +78,7 @@ body {
   text-align: left;
   border: none;
   background-color: white;
-  color:  #FF9999;
+  color:  #3b3b3b;
   
 }
 
@@ -86,7 +86,6 @@ body {
   text-align: right;
   border: none;
   background-color: white;
-  color:  grey;
 }
 
 
@@ -116,7 +115,24 @@ body {
   background-color: rgba(0,0,0,0.4);
 }
 
+.modal h3 {
+  margin: 0;
+  font-size: 2em;
+  color: #3b3b3b;
+  border-bottom: .1em solid #FF9999;
+}
+
+.modal .btn {
+  font-size: 1.5em;
+  padding: .5em;
+}
+.modal .textbox {
+  margin: 0;
+  width: 90%;
+}
+
 .modal-content {
+  border-radius: 0.5em;
   background-color: #fefefe;
   margin: 15% auto;
   padding: 1.5em;
@@ -124,12 +140,18 @@ body {
   width: 70%;
 }
 
+.label {
+  color: #3b3b3b;
+  font-size: 1.5em;
+}
+
 .close-btn {
   margin: 0;
   color: #aaa;
-  float: right;
-  font-size: 28px;
+  display: block;
+  font-size: 3em;
   font-weight: bold;
+  width: 2%;
 }
 
 .close-btn:hover, .close-btn:focus {

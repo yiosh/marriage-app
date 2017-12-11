@@ -88,7 +88,7 @@ $('document').ready(() => {
 					guestModal.style.display = "none";
 			}
 	})
-
+	// Submit new guest
 	$('#submit-guest').click(event => {
 		event.preventDefault();
 		handlers.addGuest();
