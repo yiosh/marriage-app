@@ -6,25 +6,25 @@ var guestList = {
 			lastName: 'Doe',
 			adults: 2,
 			babies: 2,
-			h: 0,
-			intolerant: 1
+			highchair: 0,
+			intolerant: '*'
 		},
 		{
 			name: 'Jane',
 			lastName: 'Doe',
 			adults: 2,
 			babies: 1,
-			h: 0,
-			intolerant: 0
+			highchair: 0,
+			intolerant: '-'
 		}
 	],
-	addGuest: function(name, lastName, adults, babies, h, intolerant) {
+	addGuest: function(name, lastName, adults, babies, highchair, intolerant) {
 		this.guests.push({
 			name: name,
 			lastName: lastName,
 			adults: adults,
 			babies: babies,
-			h: h,
+			highchair: highchair,
 			intolerant: intolerant
 		});
 	}
@@ -37,22 +37,45 @@ var handlers = {
 			addGuestLastNameInput = document.getElementById('input-last-name'),
 			addGuestAdultsInput = document.getElementById('input-adults'),
 			addGuestBabiesInput = document.getElementById('input-babies'),
-			addGuestHInput = document.getElementById('input-h'),
-			addGuestIntolerantInput = document.getElementById('input-intolerant');
-		
-		// Add new guests
-		guestList.addGuest(addGuestNameInput.value, addGuestLastNameInput.value, addGuestAdultsInput.value, addGuestBabiesInput.value, addGuestHInput.value, addGuestIntolerantInput.value);
+			addGuestHighchairInput = document.getElementById('input-highchair'),
+			addGuestIntolerantInput = document.getElementsByName('input-intolerant'),
+			addGuestIntolerantInputChecked;
 
-		// Set input text values back to empty
-		addGuestNameInput.value = '';
-		addGuestLastNameInput.value = '';
-		addGuestAdultsInput.value = '';
-		addGuestBabiesInput.value = '';
-		addGuestHInput.value = '';
-		addGuestIntolerantInput.value = '';
-		view.displayGuest();
+			// Check if intolerant is checked and output the element
+			addGuestIntolerantInput.forEach(function test(element) {
+				if(element.checked) {
+					addGuestIntolerantInputChecked = element;
+				}
+			});
+
+			let numbersRegex = /^[0-9]/;
+
+			if(numbersRegex.test(addGuestAdultsInput.value) == false) {
+				addGuestAdultsInput.style.border = '.2em solid red';
+			} else if(numbersRegex.test(addGuestBabiesInput.value) == false) {
+				addGuestBabiesInput.style.border = '.2em solid red';
+			} else if (numbersRegex.test(addGuestHighchairInput.value) == false) {
+				addGuestHighchairInput.style.border = '.2em solid red';
+			} else {
+				// Add new guests
+				guestList.addGuest(addGuestNameInput.value, addGuestLastNameInput.value, Number(addGuestAdultsInput.value), Number(addGuestBabiesInput.value), Number(addGuestHighchairInput.value),addGuestIntolerantInputChecked.value);
+
+				addGuestAdultsInput.style = '';
+
+				// Set input text values back to empty
+				addGuestNameInput.value = '';
+				addGuestLastNameInput.value = '';
+				addGuestAdultsInput.value = 1;
+				addGuestBabiesInput.value = 0;
+				addGuestHighchairInput.value = 0;
+				addGuestIntolerantInput[0].checked = true;
+				view.displayGuest();
+				document.getElementById('guest-modal').style.display = "none";
+
+			}
+		}
 	}
-}
+
 // View object to output changes
 var view = {
 	displayGuest: function() {
@@ -62,7 +85,7 @@ var view = {
 		guestList.guests.forEach((guest, index) => {
 			var	guessElement = document.createElement('div');
 			guessElement.className = 'guest';
-			guessElement.innerHTML = `<p id="family-name">${guest.name} ${guest.lastName}</p><p id="number-adults">${guest.adults}</p><p id="number-babies">${guest.babies}</p><p id="number-h">${guest.h}</p><p id="number-intolerant">${guest.intolerant}</p></div>`;
+			guessElement.innerHTML = `<p id="family-name">${guest.name} ${guest.lastName}</p><p id="number-adults">${guest.adults}</p><p id="number-babies">${guest.babies}</p><p id="number-h">${guest.highchair}</p><p id="number-intolerant">${guest.intolerant}</p></div>`;
 			guestListEl.appendChild(guessElement);
 		});
 	}	
