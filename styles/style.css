@@ -1,22 +1,42 @@
-* {
-  font-size: 12px;
-}
-body {
+html {
   background-color: #3E4149;
-  font-family:sans-serif;
+  font-family: sans-serif;
+  font-size: 12px;
   margin: 0;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin: 1em;
 }
 
 /* GUEST SECTION */
 .guest-section {
-  margin: 1em;
+  min-height: 300px;
+  overflow: hidden;
+  padding: 1em;
   border: 0.1em solid grey;
   border-radius: 0.5em;
   background-color:#FFC8C8;
+  overflow: hidden;
 }
 
-.fa-search {
-  color: #FF9999;
+.searchbox {
+  display: flex;
+  width: 70%;
+  justify-content: space-between;
+  margin: 0em 1em 0em 0em;
+  padding: 0.5em 0em;
+  border: 0.15em solid #FF9999;
+  background-color: white;
+  border-radius: 0.5em;
 }
 
 .search-txt {
@@ -25,21 +45,20 @@ body {
   text-align: left;
   border: none;
   color:  #3b3b3b;
-  
 }
 
 .search-btn {
-  text-align: right;
+  margin: 0em .5em;
   border: none;
   background-color: white;
 }
 
-.buttons {
-  margin: 2em;
-  text-align: center;
+.fa-search {
+  color: #FF9999;
 }
 
 .btn {
+  font-weight: bold;
   background-color: #FF9999;
   padding: 0.5em;
   border: 0.15em solid white;
@@ -47,34 +66,29 @@ body {
   color: white;
 }
 
-.add-guest {
-  margin: 0em 1em 0em 0em;
-}
-
-.searchbox {
-  display: grid;
-  grid-template-columns: 80% 20%;
-  margin: 0em 1em;
-  padding: 0.5em 0em;
-  border: 0.15em solid #FF9999;
-  background-color: white;
-  border-radius: 0.5em;
-}
-
-
 .guest-menu {
+  
+  width: 100%;
   margin: 1em 0;
-  display: grid;
-  grid-template-columns: 5fr 1fr;
+  display: flex;
+  justify-content: space-between;
+}
+
+.add-guest {
+  width: 30%;
+  margin: 0em;
+  /* justify-content: flex-end; */
 }
 
 .guest-list-header {
+  padding: 1em 0em;
+  font-weight: bold;
+  font-size: 1.2em;
   display: grid;
   grid-template-columns: 4fr 1fr 1fr 1fr 1fr 1fr;
   color: white;
   border-radius: 0.5em;
   background-color:#FF9999;
-  margin: 1em;
 }
 
 .list-item {
@@ -82,10 +96,14 @@ body {
 }
 
 .guest-list {
+  height: 100%;
+  min-height: 250px;
+  max-height: 250px;
   border: 0.1em solid #FF9999;
   border-radius: 0.5em;
   background-color: #FF9999;
-  margin: 1em;
+  margin: 1em 0em;
+  overflow-y: scroll;
 }
 
 .guest {
@@ -104,8 +122,7 @@ body {
 }
 
 .assign-btns {
-  width: 15em;
-  margin: 1.5em 1em;
+  padding: 1em 0em;
 }
 
 .assign-btns input[type="radio"]{
@@ -119,31 +136,30 @@ body {
 
 /* TABLE SECTION */
 .table-section {
-  box-sizing: border-box;
-  margin: 1em;
+  padding: 1em;
+  min-height: 300px;
+  margin: 0;
   border: .1em solid grey;
   border-radius: .5em;
   background-color: #FFC8C8;
+  overflow: hidden;
 }
 
 .btn-add-table {
-  margin: 1em;
+  margin-bottom: .2em;
 }
 
 .table-container {
   box-sizing: border-box;
   height: 250px;
-  margin: 1em 0em 1em 1em;
-  width: 90%;
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow-y: scroll;
 }
 
 .table {
   box-sizing: border-box;
   min-height: 200px;
-  height: 100%;
-  width: 100%;
+  height: 96%;
+  width: 96%;
   background-color: #FF9999;
   margin: 0em 0em .9em 0em;
   border: .15em solid white;
@@ -260,7 +276,9 @@ p.label {
 
 @media only screen and (min-width: 961px) {
   .table {
-    margin: 1em 1em 1em 0em;
+    min-width: 580px;
+    min-height: 240px;
+    /* margin: 1em 1em 1em 0em; */
   }
 
   .section {
@@ -268,18 +286,27 @@ p.label {
     height: 100%;
   }
 
+  .guest-section {
+    box-sizing: border-box;
+    min-height: 600px;
+    width: 30%;
+    padding: 1em;
+    margin-right: 1em;
+  }
+
   .guest-list {
     border-radius: 0.5em;
     background-color: #FF9999;
-    margin: 1em;
-    min-height: 600px;
+    margin: 1em 0em;
+    min-height: 400px;
     height: 70%;
   }
 
   .container {
     height: 100%;
-    display: grid;
-    grid-template-columns: 1.5fr 5.5fr;
+    width: 100%;
+    flex-direction: row;
+    margin: 1em;
   }
 
   .modal .form-text {
@@ -300,19 +327,24 @@ p.label {
     padding: .5em;
   }
 
+  .table-section {
+    min-height: 600px;
+    height: 100%;
+    width: 70%;
+    padding: 1em;
+    margin-right: 1em;
+  }
+
   .table-container {
+    min-height: 550px;
+    max-height: 550px;
     display: grid;
     grid-column-gap: 1em;
     grid-row-gap: 1em;
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns: repeat(2,1fr);
     box-sizing: border-box;
-    height: 700px;
-    margin: 0em 1em 1em 1em;
-    width: 98%;
-    overflow-x: hidden;
-    overflow-y: scroll;
-  }
-
-  .table {
+    margin: 0em;
+    /* overflow-x: hidden;
+    overflow-y: scroll; */
   }
 }

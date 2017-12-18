@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Marriage App</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="styles/style.css" rel="stylesheet" type="text/css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
 </head>
 
@@ -24,11 +24,11 @@
         <input type="button" class="btn add-guest" id="add-guest" value="Add Guest">
       </div>
       <div class="guest-list-header">
-        <h4 class="list-item list-name">Name</h4>
-        <h4 class="list-item">A</h4>
-        <h4 class="list-item">B</h4>
-        <h4 class="list-item">H</h4>
-        <h4 class="list-item">I</h4>
+        <label class="list-item list-name">Name</label>
+        <abbr class="list-item" title="Adult">A</abbr>
+        <abbr class="list-item" title="Babies">B</abbr>
+        <abbr class="list-item" title="Highchair">H</abbr>
+        <abbr class="list-item" title="Intolerant">I</abbr>
         <div></div>
       </div>
       <div id="guest-list" class="guest-list"></div>
@@ -45,48 +45,7 @@
       </div>
     </div>
 
-    <div id="guest-modal" class="modal">
-      <div class="modal-content">
-        <form action="">
-          <span class="close-btn">&times;</span>
-          <h3>Add Guest</h3> <br>
-          <div class="form-input">
-            <label class="label" for="input-name">Name</label>
-            <br>
-            <input id="input-name" required class="form-text" type="text">
-          </div>
-          <br>
-          <div>
-            <label class="label" for="input-last-name">Last Name</label>
-            <br>
-            <input id="input-last-name" required class="form-text" type="text">
-          </div>
-          <br>
-          <div class="numerical-textbox">
-            <div class="form-input-numbers">
-              <label class="label" for="input-adults">Adults</label>
-              <input id="input-adults" required class="form-text" type="number" value="1">
-            </div>
-            <div class="form-input-numbers">
-              <label class="label" for="input-babies">Babies</label>
-              <input id="input-babies" required class="form-text " type="number" value="0">
-            </div>
-            <div class="form-input-numbers">
-              <label class="label" for="input-highchair">Highchair</label>
-              <input id="input-highchair" required class="form-text" type="number" value="0">
-            </div>
-          </div>
-          <div>
-            <p class="label">Intolerant</p>
-            <input type="radio" checked="true" required name="input-intolerant" id="no" value="-">
-            <label for="-">No</label>
-            <input type="radio" required name="input-intolerant" id="yes" value="*">
-            <label for="*">Yes</label>
-          </div><br>
-          <input id="submit-guest" class="btn" type="submit" value="Submit">
-        </form>
-      </div>
-    </div>
+    <div id="modal-section"></div> 
     
     <div class="table-section" ondrop="drop(event)" ondragover="allowDrop(event)">
       <input type="button" class="btn btn-add-table" id="add-table-btn" value="Add Table">
@@ -165,7 +124,7 @@
       </div>
     </div>
 </div>
-  <script src="app.js"></script>
+  <script src="scripts/main.js"></script>
 </body>
 
 </html>
