@@ -2,9 +2,9 @@ let modalElement = document.createElement('div');
 modalElement.className = 'modal';
 modalElement.id = "modal";
 
-let addGuest = document.getElementById('add-guest');
-let addTable = document.getElementById('add-table-btn');	
 window.addEventListener('click', event => {
+	let addGuest = document.getElementById('add-guest');
+	let addTable = document.getElementById('add-table-btn');
 	// Add guest and table Button Function
 	if(event.target == addGuest) {
 		modalElement.innerHTML = '';
@@ -14,7 +14,7 @@ window.addEventListener('click', event => {
 
 		// Submit new guest
 		let submitGuest = document.getElementById('submit-guest');
-		(submitGuest).onclick = event => {
+		submitGuest.onclick = event => {
 			event.preventDefault();
 			handlers.addGuest();
 		};
@@ -24,13 +24,21 @@ window.addEventListener('click', event => {
 		modalElement.innerHTML = '<div class="modal-content"><form action=""><span class="close-btn">&times;</span><h3>Add Table</h3><br><div id="message"></div><div class="form-input"><label class="label" for="input-table-name">Table Name</label><br><input id="input-table-name" required class="form-text" type="text"></div><input id="submit-table" class="btn" type="submit" value="Submit"></form></div>';
 		document.getElementById('modal-section').appendChild(modalElement);
 		modalElement.style.display = 'block';
+
+		// Submit new guest
+		let submitTable = document.getElementById('submit-table');
+		submitTable.onclick = event => {
+			event.preventDefault();
+			handlers.addTable();
+		};
 	}
 	// When the user clicks close span it removes modal
 	let closeBtn = document.getElementsByClassName('close-btn')[0];
 	let modalSection = document.getElementById('modal-section');
-	closeBtn.addEventListener('click', () => {
+	closeBtn.onclick = () => {
 		modalElement.style.display = 'none';
-	});
+		// modalElement.innerHTML = '';
+	};
 
 	// When the user clicks anywhere outside of the modal element, close it
 	window.addEventListener('click', event => {
@@ -60,8 +68,8 @@ var guestList = {
 			intolerant: 'None'
 		}
 	],
-	addGuest: function(name, lastName, adults, babies, highchair, intolerant) {
-		this.guests.push({
+	addGuest: (name, lastName, adults, babies, highchair, intolerant) => {
+		guestList.guests.push({
 			name: name,
 			lastName: lastName,
 			adults: adults,
@@ -72,9 +80,28 @@ var guestList = {
 	}
 };
 
+var tableList = {
+	tables: [
+		{
+			name: 'Blue',
+			families: [
+				{
+					name: 'John Doe'
+				}
+			]
+		}
+	],
+	addTable : name => {
+		tableList.tables.push({
+			name:name,
+			families: []
+		});
+	}
+}
+
 // Handlers for the guestList object
 var handlers = {
-	addGuest: function(){
+	addGuest: () => {
 		let nameInput = document.getElementById('input-name'),
 			lastNameInput = document.getElementById('input-last-name'),
 			adultsInput = document.getElementById('input-adults'),
@@ -83,50 +110,57 @@ var handlers = {
 			intolerantInput = document.getElementById('input-intolerant');
 			messageElement = document.getElementById('message');
 
-			// Output a message if user didn't input a number on any of the numerical fields
-			let numbersRegex = /^[0-9]/;
-			if(numbersRegex.test(adultsInput.value) == false) {
-				adultsInput.style = '';
-				babiesInput.style = '';
-				highchairInput.style = '';
-				messageElement.textContent = 'You need to input a number';
-				adultsInput.style.border = '.2em solid red';
-			} else if(numbersRegex.test(babiesInput.value) == false) {
-				adultsInput.style = '';
-				babiesInput.style = '';
-				highchairInput.style = '';
-				messageElement.textContent = 'You need to input a number';
-				babiesInput.style.border = '.2em solid red';
-			} else if (numbersRegex.test(highchairInput.value) == false) {
-				adultsInput.style = '';
-				babiesInput.style = '';
-				highchairInput.style = '';
-				messageElement.textContent = 'You need to input a number';
-				highchairInput.style.border = '.2em solid red';
-			} else {
-				// Add new guests
-				guestList.addGuest(nameInput.value, lastNameInput.value, Number(adultsInput.value), Number(babiesInput.value), Number(highchairInput.value),intolerantInput.value);
+		// Output a message if user didn't input a number on any of the numerical fields
+		let numbersRegex = /^[0-9]/;
+		if(numbersRegex.test(adultsInput.value) == false) {
+			adultsInput.style = '';
+			babiesInput.style = '';
+			highchairInput.style = '';
+			messageElement.textContent = 'You need to input a number';
+			adultsInput.style.border = '.2em solid red';
+		} else if(numbersRegex.test(babiesInput.value) == false) {
+			adultsInput.style = '';
+			babiesInput.style = '';
+			highchairInput.style = '';
+			messageElement.textContent = 'You need to input a number';
+			babiesInput.style.border = '.2em solid red';
+		} else if (numbersRegex.test(highchairInput.value) == false) {
+			adultsInput.style = '';
+			babiesInput.style = '';
+			highchairInput.style = '';
+			messageElement.textContent = 'You need to input a number';
+			highchairInput.style.border = '.2em solid red';
+		} else {
+			// Add new guests
+			guestList.addGuest(nameInput.value, lastNameInput.value, Number(adultsInput.value), Number(babiesInput.value), Number(highchairInput.value),intolerantInput.value);
 
-				//Remove any styles on the number fields
-				adultsInput.style = '';
-				babiesInput.style = '';
-				highchairInput.style = '';
-				// Remove any message left on the message section
-				messageElement.innerHTML = '';
+			//Remove any styles on the number fields
+			adultsInput.style = '';
+			babiesInput.style = '';
+			highchairInput.style = '';
+			// Remove any message left on the message section
+			messageElement.innerHTML = '';
 
-				// Set input text values back to empty
-				nameInput.value = '';
-				lastNameInput.value = '';
-				adultsInput.value = 1;
-				babiesInput.value = 0;
-				highchairInput.value = 0;
-				intolerantInput.value = '';
-				view.displayGuest();
-				document.getElementById('guest-modal').style.display = "none";
-
-			}
+			// Set input text values back to empty
+			nameInput.value = '';
+			lastNameInput.value = '';
+			adultsInput.value = 1;
+			babiesInput.value = 0;
+			highchairInput.value = 0;
+			intolerantInput.value = '';
+			view.displayGuest();
+			document.getElementById('modal').style.display = "none";
 		}
+	},
+	addTable: () => {
+		let nameInput = document.getElementById('input-table-name');
+
+		tableList.addTable(nameInput.value);
+		nameInput.value = '';
+		view.displayTable();
+		document.getElementById('modal').style.display = "none";
 	}
+}
 
 // View object to output changes
 var view = {
@@ -140,7 +174,20 @@ var view = {
 			guestElement.innerHTML = `<p id="family-name">${guest.name} ${guest.lastName}</p><p id="number-adults">${guest.adults}</p><p id="number-babies">${guest.babies}</p><p id="number-h">${guest.highchair}</p><p id="number-intolerant">${guest.intolerant}</p></div>`;
 			guestListEl.appendChild(guestElement);
 		});
-	}	
+	},
+	displayTable: function() {
+		var tableContainer = document.getElementById('table-container');
+		tableContainer.innerHTML = '';
+
+		tableList.tables.forEach((table, index) => {
+			let tableElement = document.createElement('div');
+			tableElement.className = 'table';
+			tableElement.innerHTML = `<div class="table-header"><p class="table-name"><strong>${table.name}</strong></p></div><div class="table-body"></div><div class="table-footer"></div>`;
+		var tableContainer = document.getElementById('table-container');
+			tableContainer.appendChild(tableElement);
+		});
+	}
 };
 // Fill Guest List with Example Object
+view.displayTable();
 view.displayGuest();
