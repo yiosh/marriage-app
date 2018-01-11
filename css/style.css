@@ -294,6 +294,7 @@ p.label {
   .table {
     min-width: 400px;
     min-height: 240px;
+    max-height: 300px;
     /* margin: 1em 1em 1em 0em; */
   }
 

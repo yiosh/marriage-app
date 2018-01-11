@@ -142,6 +142,25 @@
           <div class="table-header">
             <p class="table-id" hidden><?php echo $table['id']; ?></p>
             <p class="table-name"><strong><?php echo $table['nome_tavolo']; ?></strong></p>
+            <?php
+            $rows = $queryGuests->rowCount();
+              foreach($guests as $guest) {
+                  if ($guest['tavolo_id'] > 0) {
+                    if ($guest['tavolo_id'] == $table['id']) {
+                      echo '
+                      <div class="guest">
+                        <p id="id" hidden>'.$guest['id'].'</p>
+                        <p class="family-name">'.$guest['nome'].' '.$guest['cognome'].'</p>
+                        <p class="number-adults">'.$guest['adulti'].'</p>
+                        <p class="number-babies">'.$guest['bambini'].'</p>
+                        <p class="number-highchair">'.$guest['seggioloni'].'</p>
+                        <p class="number-intolerant">'.$guest['note_intolleranze'].'</p>
+                      </div>
+                      ';
+                    }
+                  }
+              }
+            ?>
           </div>
         </div>
         <?php endforeach; ?>

@@ -22,6 +22,7 @@ $(document).ready(() => {
   });
 
   $('.table').sortable({
+    connectWith: '.connectedSortable',
     receive(e, ui) {
       ui.sender.data('copied', true);
       console.log(ui.item[0].childNodes[1].innerText);
