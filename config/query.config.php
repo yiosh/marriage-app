@@ -6,7 +6,7 @@
   // Fetch results
   $tables = $queryTables->fetchAll();
 
-  $queryGuests = $conn->prepare('SELECT * FROM fl_tavoli_commensali WHERE tavolo_id<>0');
+  $queryGuests = $conn->prepare('SELECT * FROM fl_tavoli_commensali');// WHERE tavolo_id<>0
   $queryGuests->execute();
   // Fetch results
   $guests = $queryGuests->fetchAll();

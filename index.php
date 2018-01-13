@@ -1,6 +1,5 @@
 <?php
   require('config/query.config.php');
-  require('config/config.php');
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +29,9 @@
             <i class="fas fa-search"></i>
           </button>
         </div>
-        <input type="button" class="btn add-guest" id="add-guest" value="Add Guest">
+        <div>
+          <button type="button" id="add-guest" class="btn add-guest">Add Guest</button>
+        </div>
       </div>
 
       <div class="guest-list-header">
@@ -72,58 +73,62 @@
       <!-- GUEST MODAL -->
       <div id="add-guest-modal" class="modal">
         <div class="modal-content">
+          <i id="close1" class="close-btn fas fa-times"></i>
+          <!-- <span class="close-btn">&times;</span> -->
           <form method="POST" action="includes/submit-guest.inc.php">
-            <span id="close1" class="close-btn">&times;</span>
-            <h3>Add Guest</h3><br><div id="message"></div>
-            <div class="form-input">
+            <h3><i class="far fa-address-card"></i> Add Guest</h3>
+            <br>
+            <div id="message"></div>
+            <p class="form-input">
               <label class="label" for="input-name">Name</label>
               <br>
               <input id="input-name" name="nome" class="form-text" type="text" required>
-            </div>
-            <br>
-            <div>
+            </p>
+            <p class="form-input">
               <label class="label" for="input-last-name">Last Name</label>
               <br>
               <input id="input-last-name" name="cognome" required class="form-text" type="text">
-            </div>
-            <br>
-            <div class="numerical-textbox">
-              <div class="form-input-numbers">
+            </p>
+            <div class="numerical-textbox-container">
+              <p class="form-input-numbers">
                 <label class="label" for="input-adults">Adults</label>
                 <input id="input-adults" name="adulti" required class="form-text" type="number" value="1">
-              </div>
-              <div class="form-input-numbers">
+              </p>
+              <p class="form-input-numbers">
                 <label class="label" for="input-babies">Babies</label>
                 <input id="input-babies" name="bambini" required class="form-text " type="number" value="0">
-              </div>
-              <div class="form-input-numbers">
+              </p>
+              <p class="form-input-numbers">
                 <label class="label" for="input-highchair">Highchair</label>
                 <input id="input-highchair" name="seggioloni" required class="form-text" type="number" value="0">
-              </div>
+              </p>
             </div>
-            <div>
+            <p class="form-input">
               <label class="label" for="input-intolerant">Intolerant</label>
               <br>
               <input id="input-intolerant" name="note_intolleranze" required class="form-text" type="text">
+            </p>
+            <div class="submit">
+              <button id="submit-guest" name="submit-guest" class="btn" type="submit">Submit</button>
             </div>
-            <input id="submit-guest" name="submit-guest" class="btn" type="submit" value="Submit">
           </form>
         </div>
       </div>
       <!-- TABLE MODAL -->
       <div id="add-table-modal" class="modal">
         <div class="modal-content">
+          <i id="close2" class="close-btn fas fa-times"></i>
           <form method="POST" action="includes/submit-table.inc.php">
-            <span id="close2" class="close-btn">&times;</span>
-            <h3>Add Table</h3>
-            <br>
+            <h3><i class="fas fa-table"></i> Add Table</h3>
             <div id="message"></div>
-            <div class="form-input">
-              <label class="label" for="input-table-name">Table Name</label>
+            <p class="form-input">
+              <label class="label">Table Name</label>
               <br>
-              <input id="input-table-name" name="nome_tavolo" required class="form-text" type="text">
+              <input class="form-text" id="input-table-name" name="nome_tavolo" required type="text">
+            </p>
+            <div class="submit">
+              <button type="submit" class="btn" id="submit-table" name="submit-table" >Submit</button>
             </div>
-            <input id="submit-table" name="submit-table" class="btn" type="submit" value="Submit">
           </form>
         </div>
       </div>
