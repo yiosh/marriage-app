@@ -97,7 +97,7 @@
             <p class="form-input">
               <label class="label" for="input-intolerant">Intolerant</label>
               <br>
-              <input id="input-intolerant" name="note_intolleranze" required class="form-text" type="text">
+              <input id="input-intolerant" name="note_intolleranze" class="form-text" type="text">
             </p>
             <div class="submit">
               <button id="submit-guest" name="submit-guest" class="btn" type="submit">Submit</button>

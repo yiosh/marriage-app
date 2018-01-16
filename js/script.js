@@ -3,9 +3,26 @@ $(document).ready(() => {
   $('.table-body').sortable({
     connectWith: '.connectedSortable',
     receive(e, ui) {
-      ui.sender.data('copied', true);
+      // ui.sender.data('copied', true);
       let user_id = ui.item[0].id;
       let tavolo_id = this.dataset.rel;
+      // $('#'+user_id).css('display', 'none');
+      $.ajax({
+        url: "./includes/update-guest-table.inc.php",
+        method: "POST",
+        data: { user_id: user_id, tavolo_id: tavolo_id },
+        dataType: "json"
+      });
+    },
+  });
+
+  $('#guest-list').sortable({
+    connectWith: '.connectedSortable',
+    receive(e, ui) {
+      // ui.sender.data('copied', true);
+      let user_id = ui.item[0].id;
+      let tavolo_id = this.dataset.rel;
+      // $('#'+user_id).css('display', 'none');
       $.ajax({
         url: "./includes/update-guest-table.inc.php",
         method: "POST",
@@ -35,22 +52,52 @@ $(document).ready(() => {
   });
 
   // Guest list becomes sortable
+  // $('#guest-list').sortable({
+  //   connectWith: '.connectedSortable',
+  //   cursor: 'move',
+  //   helper(e, div) {
+  //     this.copyHelper = div.clone().insertAfter(div);
+  //     $(this).data('copied', false);
+  //     return div.clone();
+  //   },
+  //   stop() {
+  //     const copied = $(this).data('copied');
+  //     if (!copied) {
+  //       this.copyHelper.remove();
+  //     }
+  //     this.copyHelper = null;
+  //   },
+  // });
+
   $('#guest-list').sortable({
     connectWith: '.connectedSortable',
     cursor: 'move',
-    helper(e, div) {
-      this.copyHelper = div.clone().insertAfter(div);
-      $(this).data('copied', false);
-      return div.clone();
-    },
-    stop() {
-      const copied = $(this).data('copied');
-      if (!copied) {
-        this.copyHelper.remove();
-      }
-      this.copyHelper = null;
-    },
+    helper: 'clone'
   });
+
+  $('.table-body').sortable({
+    connectWith: '.connectedSortable',
+    cursor: 'move',
+    helper: 'clone'
+  });
+
+  // // Guest list becomes sortable
+  // $('.table-body').sortable({
+  //   connectWith: '.connectedSortable',
+  //   cursor: 'move',
+  //   helper(e, div) {
+  //     this.copyHelper = div.clone().insertAfter(div);
+  //     $(this).data('copied', false);
+  //     return div.clone();
+  //   },
+  //   stop() {
+  //     const copied = $(this).data('copied');
+  //     if (!copied) {
+  //       this.copyHelper.remove();
+  //     }
+  //     this.copyHelper = null;
+  //   },
+  // });
 
   // Filter guest list to show guests in need of assignment to a table
   if ($('#to-assign').is(':checked')) {
