@@ -50,6 +50,7 @@ body {
   /* border: 0.15em solid #ff9999; */
   background-color: #fff8f8;
   border-radius: 0.5em;
+  height: 1.5rem;
 }
 
 .search-txt {
@@ -61,6 +62,7 @@ body {
 }
 
 .btn {
+  font-size: 1.2rem;
   font-weight: bold;
   background-color: #5f4a4a;
   padding: 0.5em;
@@ -103,7 +105,7 @@ body {
 
 .guest-list {
   height: 100%;
-  min-height: 155px;
+  min-height: 70vh;
   max-height: 155px;
   border: 0.1em solid #897474;
   border-bottom-left-radius: 0.5em;
@@ -123,12 +125,16 @@ body {
   color: #5f4a4a;
 }
 
+.toggle-btn {
+  padding: 0.8rem 1rem;
+}
+
 .toggle input[type='radio'] {
   display: none;
 }
 
 .assign-btns {
-  padding: 1em 0em;
+  padding-top: 1.5rem;
 }
 
 .assign-btns input[type='radio'] {
@@ -143,15 +149,11 @@ body {
 /* TABLE SECTION */
 .table-section {
   padding: 1em;
-  min-height: 300px;
+  height: 100%;
   margin: 0;
   border-radius: 0.5em;
   background-color: #d6c8c8;
   overflow: hidden;
-}
-
-.table-btn {
-  margin-bottom: 1rem;
 }
 
 .btn-add-table {
@@ -214,8 +216,8 @@ body {
 .modal h3 {
   margin: 0;
   font-size: 2em;
-  color: #3b3b3b;
-  border-bottom: 0.1em solid #ff9999;
+  color: #5f4a4a;
+  border-bottom: 0.1em solid #5f4a4a;
 }
 
 .modal .btn {
@@ -225,11 +227,6 @@ body {
 
 .form-input {
   margin: 1em auto;
-}
-
-.form-text {
-  margin: 0em;
-  padding: 0.5em;
 }
 
 .numerical-textbox-container {
@@ -263,8 +260,9 @@ form {
   width: 95%;
   margin: auto;
   padding: 0.5em;
-  border: 0.15em solid #ff9999;
+  color: #5f4a4a;
   background-color: #fff8f8;
+  border: 0.15em solid #5f4a4a;
   border-radius: 0.5em;
 }
 
@@ -295,6 +293,10 @@ form {
   cursor: pointer;
 }
 
+.guest , .guest > p {
+  cursor: pointer;
+}
+
 @media only screen and (min-width: 401px) and (max-width: 960px) {
   .table-container {
     display: grid;
@@ -318,19 +320,15 @@ form {
 
   .guest-section {
     box-sizing: border-box;
-    min-height: 600px;
-    width: 30%;
+    min-height: 97.2vh;
+    width: 40%;
     padding: 1em;
     margin-right: 1em;
   }
 
   .guest-list {
-    /* border-bottom-left-radius: 0.5em;
-    border-bottom-right-radius: 0.5em;
-    /* background-color: #ff9999; */
-
-    min-height: 600px;
-    height: 70%;
+    min-height: 80vh;
+    max-height: 80vh;
   }
 
   .container {
@@ -357,8 +355,9 @@ form {
   }
 
   .table-section {
-    min-height: 800px;
-    height: 70%;
+    min-width: 55vh;
+    min-height: 94.4vh;
+    max-height: 94.4vh;
     padding: 1rem;
     margin-right: 1em;
   }
@@ -367,14 +366,16 @@ form {
     margin: 0 5rem 1rem 0;
   }
   .table-container {
-    min-height: 750px;
+    height: 100%;
     /* max-height: 550px; */
-    max-width: 1300px;
     display: grid;
     grid-column-gap: 1em;
     grid-row-gap: 1em;
     grid-template-columns: repeat(3, 1fr);
     box-sizing: border-box;
     overflow-x: hidden;
+    overflow-y: scroll;
+    min-width: 55vh;
+    min-height: 90vh;
   }
 }
