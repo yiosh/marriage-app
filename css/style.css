@@ -18,13 +18,14 @@ body {
 .container {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 100vh;
   margin: 0.5rem;
 }
 
 /* GUEST SECTION */
 .guest-section {
-  min-height: 200px;
+  min-height: 40%;
+  max-height: 40%;
   overflow: hidden;
   padding: 1em;
   border-radius: 0.5em;
@@ -34,6 +35,8 @@ body {
 }
 
 .guest-menu {
+  min-height: 10%;
+  max-height: 10%;
   width: 100%;
   margin-bottom: 1rem;
   display: flex;
@@ -62,7 +65,6 @@ body {
 }
 
 .btn {
-  font-size: 1.2rem;
   font-weight: bold;
   background-color: #5f4a4a;
   padding: 0.5em;
@@ -104,14 +106,13 @@ body {
 }
 
 .guest-list {
-  height: 100%;
-  min-height: 70vh;
-  max-height: 155px;
+  min-height: 63%;
+  max-height: 63%;
   border: 0.1em solid #897474;
   border-bottom-left-radius: 0.5em;
   border-bottom-right-radius: 0.5em;
   background-color: #897474;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .guest {
@@ -126,7 +127,7 @@ body {
 }
 
 .toggle-btn {
-  padding: 0.8rem 1rem;
+  /* padding: 0.8rem 1rem; */
 }
 
 .toggle input[type='radio'] {
@@ -134,7 +135,9 @@ body {
 }
 
 .assign-btns {
-  padding-top: 1.5rem;
+  min-height: 10%;
+  max-height: 10%;
+  padding-top: 1em;
 }
 
 .assign-btns input[type='radio'] {
@@ -149,7 +152,8 @@ body {
 /* TABLE SECTION */
 .table-section {
   padding: 1em;
-  height: 100%;
+  min-height: 48.5%;
+  max-height: 48.5%;
   margin: 0;
   border-radius: 0.5em;
   background-color: #d6c8c8;
@@ -163,7 +167,9 @@ body {
 .table-container {
   box-sizing: border-box;
   height: 250px;
-  overflow-y: scroll;
+  overflow-y: auto;
+  margin-top: 1em;
+  height: 85%;
 }
 
 .table {
@@ -174,10 +180,10 @@ body {
   background-color: #897474;
   margin: 0em 0em 0.9em 0em;
   border-radius: 0.5em;
-  overflow-y: scroll;
 }
 
 .table-name {
+  height: 20%;
   background-color: #fff8f8;
   margin: 0em;
   padding: 0.5em;
@@ -190,9 +196,10 @@ body {
 .table-body {
   height: 100%;
   width: 100%;
-  min-height: 180px;
-  min-width: 180px;
-  
+  min-height: 12rem;
+  max-height: 17.5rem;
+  min-width: 10rem;
+  overflow-y: auto; 
 }
 
 /* MODAL */
@@ -310,7 +317,6 @@ form {
     min-width: 290px;
     min-height: 240px;
     max-height: 300px;
-    /* margin: 1em 1em 1em 0em; */
   }
 
   .section {
@@ -321,7 +327,8 @@ form {
   .guest-section {
     box-sizing: border-box;
     min-height: 97.2vh;
-    width: 40%;
+    min-width: 30vw;
+    max-width: 30vw;
     padding: 1em;
     margin-right: 1em;
   }
@@ -355,7 +362,8 @@ form {
   }
 
   .table-section {
-    min-width: 55vh;
+    min-width: 67vw;
+    max-width: 67vw;
     min-height: 94.4vh;
     max-height: 94.4vh;
     padding: 1rem;
@@ -369,13 +377,28 @@ form {
     height: 100%;
     /* max-height: 550px; */
     display: grid;
-    grid-column-gap: 1em;
-    grid-row-gap: 1em;
-    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: .5em;
+    grid-row-gap: .5em;
+    grid-template-columns: repeat(3, 33%);
     box-sizing: border-box;
     overflow-x: hidden;
-    overflow-y: scroll;
-    min-width: 55vh;
-    min-height: 90vh;
+    overflow-y: auto;
+    min-height: 80vh;
+    max-height: 89vh;
+    margin-top: 0;
+  }
+
+  .table-body {
+    max-height: 16.5rem;
+    max-width: 34rem;
+  }
+
+  .assign-btns {
+    margin-top: 1.5em;
+    padding: 0;
+  }
+
+  .assign-btns .btn {
+    padding: .8em;
   }
 }
