@@ -1,5 +1,11 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  box-sizing: border-box;
+}
 html {
-  background-color: #3e4149;
+  
   font-family: sans-serif;
   font-size: 12px;
   margin: 0;
@@ -7,7 +13,6 @@ html {
 
 body {
   overflow: hidden;
-  height: 100%;
   margin: 0;
 }
 
@@ -16,16 +21,20 @@ body {
 }
 
 .container {
-  display: flex;
-  flex-direction: column;
+  background-color: #3e4149;
   height: 100vh;
-  margin: 0.5rem;
+  width: 100vw;
+  display: grid;
+  grid-template-rows: 45% 54%;
+  grid-row-gap: 1vh;
+  grid-auto-flow: row;
+  padding: 1vh;
 }
 
 /* GUEST SECTION */
 .guest-section {
-  min-height: 40%;
-  max-height: 40%;
+  min-height: 100%;
+  max-height: 100%;
   overflow: hidden;
   padding: 1em;
   border-radius: 0.5em;
@@ -35,7 +44,6 @@ body {
 }
 
 .guest-menu {
-  min-height: 10%;
   max-height: 10%;
   width: 100%;
   margin-bottom: 1rem;
@@ -50,10 +58,8 @@ body {
   justify-content: space-between;
   margin: 0em 1em 0em 0em;
   padding: 0.5em 0em;
-  /* border: 0.15em solid #ff9999; */
   background-color: #fff8f8;
   border-radius: 0.5em;
-  height: 1.5rem;
 }
 
 .search-txt {
@@ -124,10 +130,7 @@ body {
   margin: 0.8em;
   text-align: center;
   color: #5f4a4a;
-}
-
-.toggle-btn {
-  /* padding: 0.8rem 1rem; */
+  padding: 1rem;
 }
 
 .toggle input[type='radio'] {
@@ -152,8 +155,8 @@ body {
 /* TABLE SECTION */
 .table-section {
   padding: 1em;
-  min-height: 48.5%;
-  max-height: 48.5%;
+  min-height: 100%;
+  max-height: 100%;
   margin: 0;
   border-radius: 0.5em;
   background-color: #d6c8c8;
@@ -259,17 +262,18 @@ form {
   background-color: #fefefe;
   margin: 5% auto;
   padding: 1.5em;
-  border: 1px solid #888;
+  border: none;
   width: 80%;
 }
 
 .form-text {
+  font-size: 1.5rem;
   width: 95%;
   margin: auto;
   padding: 0.5em;
-  color: #5f4a4a;
-  background-color: #fff8f8;
-  border: 0.15em solid #5f4a4a;
+  color: #fff;
+  background-color: #d6c8c8;
+  border: none;
   border-radius: 0.5em;
 }
 
@@ -309,7 +313,6 @@ form {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
   }
-  
 }
 
 @media only screen and (min-width: 961px) {
@@ -326,11 +329,10 @@ form {
 
   .guest-section {
     box-sizing: border-box;
-    min-height: 97.2vh;
-    min-width: 30vw;
-    max-width: 30vw;
+    min-height: 100%;
+    min-width: 100%;
     padding: 1em;
-    margin-right: 1em;
+    margin: 0;
   }
 
   .guest-list {
@@ -339,10 +341,11 @@ form {
   }
 
   .container {
-    height: 100%;
-    width: 100%;
-    flex-direction: row;
-    margin: 1em;
+    grid-template-rows: 1fr;
+    grid-template-columns: 30% 69.3%;
+    grid-auto-flow: column;
+    grid-column-gap: .7%;
+    margin: 0;
   }
 
   .modal .form-text {
@@ -362,30 +365,26 @@ form {
   }
 
   .table-section {
-    min-width: 67vw;
-    max-width: 67vw;
-    min-height: 94.4vh;
-    max-height: 94.4vh;
+    min-height: 100%;
+    min-width: 100%;
     padding: 1rem;
-    margin-right: 1em;
   }
 
   .btn-add-table {
     margin: 0 5rem 1rem 0;
   }
   .table-container {
-    height: 100%;
-    /* max-height: 550px; */
+    height: 95%;
     display: grid;
     grid-column-gap: .5em;
     grid-row-gap: .5em;
     grid-template-columns: repeat(3, 33%);
-    box-sizing: border-box;
     overflow-x: hidden;
     overflow-y: auto;
-    min-height: 80vh;
-    max-height: 89vh;
     margin-top: 0;
+    border-radius: .5rem;
+    padding-bottom: 1em;
+    margin-bottom: 1rem,
   }
 
   .table-body {
