@@ -63,6 +63,7 @@ body {
 }
 
 .search-txt {
+  width: 100%;
   margin: 0em 0em 0em 1em;
   text-align: left;
   border: none;
@@ -132,6 +133,7 @@ body {
   color: #5f4a4a;
   padding: 1rem;
 }
+
 
 .toggle input[type='radio'] {
   display: none;
