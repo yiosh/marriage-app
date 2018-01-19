@@ -376,8 +376,8 @@ form {
   .table-container {
     height: 95%;
     display: grid;
-    grid-column-gap: .5em;
-    grid-row-gap: .5em;
+    grid-column-gap: 1%;
+    grid-row-gap: 1%;
     grid-template-columns: repeat(3, 33%);
     overflow-x: hidden;
     overflow-y: auto;
