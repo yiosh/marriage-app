@@ -11,14 +11,16 @@ $(document).ready(() => {
     connectWith: '.connectedSortable',
     cursor: 'move',
     receive(e, ui) {
-      const user_id = ui.item[0].id;
-      const tavolo_id = this.dataset.rel;
+      const formData = new FormData();
+      formData.append('user_id', ui.item[0].id);
+      formData.append('tavolo_id', this.dataset.rel);
 
-      $.ajax({
-        url: './includes/tables_update.php',
+      // When it gets sorted it updates fl_tavoli
+      fetch('./includes/tables_update.php', {
         method: 'POST',
-        data: { user_id, tavolo_id },
-        dataType: 'json',
+        body: formData,
+      }).catch(err => {
+        console.error(err.message);
       });
     },
   });
@@ -52,15 +54,16 @@ $(document).ready(() => {
         cursor: 'move',
         // helper: 'clone',
         receive(e, ui) {
-          // ui.sender.data('copied', true);
-          const user_id = ui.item[0].id;
-          const tavolo_id = this.dataset.rel;
-          // $('#'+user_id).css('display', 'none');
-          $.ajax({
-            url: './includes/tables_update.php',
+          const formData = new FormData();
+          formData.append('user_id', ui.item[0].id);
+          formData.append('tavolo_id', this.dataset.rel);
+
+          // When it gets sorted it updates fl_tavoli
+          fetch('./includes/tables_update.php', {
             method: 'POST',
-            data: { user_id, tavolo_id },
-            dataType: 'json',
+            body: formData,
+          }).catch(err => {
+            console.error(err.message);
           });
         },
       });
