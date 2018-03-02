@@ -1,7 +1,9 @@
 <?php
+  define('ROOT_URL', 'http://localhost/marriage-app/');
+
   $DB_host = "localhost";
   $DB_user = "root";
-  $DB_pass = "aryma";
+  $DB_pass = "";
   $DB_name = "db_calderoni";
   
   // Create and check Connection
