@@ -1,6 +1,2 @@
-package.json
 .vscode
-node_modules
-package-lock.json
-marriage-app.code-workspace
-.eslintrc.js
+node_modules/
