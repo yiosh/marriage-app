@@ -44,7 +44,17 @@
       </div>
       <!-- GUEST LIST SECTION -->
       <div id="guest-list" class="guest-list connectedSortable">
-        
+        <?php foreach($guests as $guest) : ?>
+          <?php if ($guest['id'] > 0 && $guest['tavolo_id'] == 0) : ?>
+            <div class="guest" id="<?php echo $guest['id'] ?>">
+              <p class="family-name"><?php echo $guest['nome'].' '.$guest['cognome'] ?></p>
+              <p class="number-adults"><?php echo $guest['adulti'] ?></p>
+              <p class="number-babies"><?php echo $guest['bambini'] ?></p>
+              <p class="number-highchair"><?php echo $guest['seggioloni'] ?></p>
+              <p class="number-intolerant"><?php echo $guest['note_intolleranze'] ?></p>
+            </div>
+          <?php endif; ?>
+        <?php endforeach; ?> 
       </div>
 
       <div class="assign-btns">
@@ -69,32 +79,29 @@
       </div>
       <div id="table-container" class="table-container">
         <?php foreach($tables as $table) : ?>
-        <div class="table">
-          <div class="table-header">
-            <p class="table-id" hidden><?php echo $table['id']; ?></p>
-            <p class="table-name"><strong><?php echo $table['nome_tavolo']; ?></strong></p>
-            <div class="table-body connectedSortable" data-rel="<?php echo $table['id'] ?>">
-              <?php
-              $rows = $queryGuests->rowCount();
-                foreach($guests as $guest) {
-                    if ($guest['tavolo_id'] > 0) {
-                      if ($guest['tavolo_id'] == $table['id']) {
-                        echo '
-                        <div id="'.$guest['id'].'" class="guest" >
-                          <p class="family-name">'.$guest['nome'].' '.$guest['cognome'].'</p>
-                          <p class="number-adults">'.$guest['adulti'].'</p>
-                          <p class="number-babies">'.$guest['bambini'].'</p>
-                          <p class="number-highchair">'.$guest['seggioloni'].'</p>
-                          <p class="number-intolerant">'.$guest['note_intolleranze'].'</p>
+          <div class="table">
+            <div class="table-header">
+              <p class="table-id" hidden><?php echo $table['id']; ?></p>
+              <p class="table-name"><strong><?php echo $table['nome_tavolo']; ?></strong></p>
+              <div class="table-body connectedSortable" data-rel="<?php echo $table['id'] ?>">
+                <?php
+                $rows = $queryGuests->rowCount();
+                  foreach($guests as $guest) : ?>
+                    <?php if ($guest['tavolo_id'] > 0) : ?>
+                      <?php if ($guest['tavolo_id'] == $table['id']) : ?>
+                        <div id="<?php echo $guest['id'] ?>" class="guest" >
+                          <p class="family-name"><?php echo $guest['nome']." ".$guest['cognome'] ?></p>
+                          <p class="number-adults"><?php echo $guest['adulti'] ?></p>
+                          <p class="number-babies"><?php echo $guest['bambini'] ?></p>
+                          <p class="number-highchair"><?php echo $guest['seggioloni'] ?></p>
+                          <p class="number-intolerant"><?php echo $guest['note_intolleranze'] ?></p>
                         </div>
-                        ';
-                      }
-                    }
-                }
-              ?>
+                      <?php endif; ?>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+              </div>
             </div>
           </div>
-        </div>
         <?php endforeach; ?>
       </div>
     </div>

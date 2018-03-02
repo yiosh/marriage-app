@@ -1,33 +1,26 @@
 $(document).ready(() => {
+  // Connect quest-list with the other sortables
+  if ($('#to-assign').is(':checked')) {
+    $('#guest-list').sortable({
+      connectWith: '.connectedSortable',
+      cursor: 'move',
+    });
+  }
   // Makes the inside body of the tables sortable
   $('.table-body').sortable({
     connectWith: '.connectedSortable',
+    cursor: 'move',
     receive(e, ui) {
-      // ui.sender.data('copied', true);
-      let user_id = ui.item[0].id;
-      let tavolo_id = this.dataset.rel;
-      // $('#'+user_id).css('display', 'none');
-      $.ajax({
-        url: "./includes/update-guest-table.inc.php",
-        method: "POST",
-        data: { user_id: user_id, tavolo_id: tavolo_id },
-        dataType: "json"
-      });
-    },
-  });
+      const formData = new FormData();
+      formData.append('user_id', ui.item[0].id);
+      formData.append('tavolo_id', this.dataset.rel);
 
-  $('#guest-list').sortable({
-    connectWith: '.connectedSortable',
-    receive(e, ui) {
-      // ui.sender.data('copied', true);
-      let user_id = ui.item[0].id;
-      let tavolo_id = this.dataset.rel;
-      // $('#'+user_id).css('display', 'none');
-      $.ajax({
-        url: "./includes/update-guest-table.inc.php",
-        method: "POST",
-        data: { user_id: user_id, tavolo_id: tavolo_id },
-        dataType: "json"
+      // When it gets sorted it updates fl_tavoli
+      fetch('./includes/tables_update.php', {
+        method: 'POST',
+        body: formData,
+      }).catch(err => {
+        console.error(err.message);
       });
     },
   });
@@ -51,115 +44,36 @@ $(document).ready(() => {
     document.getElementById('add-table-modal').style.display = 'none';
   });
 
-  // Guest list becomes sortable
-  // $('#guest-list').sortable({
-  //   connectWith: '.connectedSortable',
-  //   cursor: 'move',
-  //   helper(e, div) {
-  //     this.copyHelper = div.clone().insertAfter(div);
-  //     $(this).data('copied', false);
-  //     return div.clone();
-  //   },
-  //   stop() {
-  //     const copied = $(this).data('copied');
-  //     if (!copied) {
-  //       this.copyHelper.remove();
-  //     }
-  //     this.copyHelper = null;
-  //   },
-  // });
-
-  $('#guest-list').sortable({
-    connectWith: '.connectedSortable',
-    cursor: 'move',
-    helper: 'clone'
-  });
-
-  $('.table-body').sortable({
-    connectWith: '.connectedSortable',
-    cursor: 'move',
-    helper: 'clone'
-  });
-
-  // // Guest list becomes sortable
-  // $('.table-body').sortable({
-  //   connectWith: '.connectedSortable',
-  //   cursor: 'move',
-  //   helper(e, div) {
-  //     this.copyHelper = div.clone().insertAfter(div);
-  //     $(this).data('copied', false);
-  //     return div.clone();
-  //   },
-  //   stop() {
-  //     const copied = $(this).data('copied');
-  //     if (!copied) {
-  //       this.copyHelper.remove();
-  //     }
-  //     this.copyHelper = null;
-  //   },
-  // });
-
-  // Filter guest list to show guests in need of assignment to a table
-  if ($('#to-assign').is(':checked')) {
-    $.getJSON("./includes/get-guest-to-assign.inc.php", function (response) {
-      $('#guest-list').html("");
-      response.forEach(function (data) {
-        $('#guest-list').append(`
-        <div class="guest" id="${data.id}">
-          <p class="family-name">${data.nome} ${data.cognome}</p>
-          <p class="number-adults">${data.adulti}</p>
-          <p class="number-babies">${data.bambini}</p>
-          <p class="number-highchair">${data.seggioloni}</p>
-          <p class="number-intolerant">${data.note_intolleranze}</p>
-        </div>`);
-      });
-    });
-    // Filter guest list to show guests that were already assigned to a table
-  } else if ($('#assigned').is(':checked')) {
-    $.getJSON("./includes/get-guest-assigned.inc.php", function (response) {
-      $('#guest-list').html("");
-
-      response.forEach(function (data) {
-        $('#guest-list').append(`
-        <div class="guest" id="${data.id}">
-          <p class="family-name">${data.nome} ${data.cognome}</p>
-          <p class="number-adults">${data.adulti}</p>
-          <p class="number-babies">${data.bambini}</p>
-          <p class="number-highchair">${data.seggioloni}</p>
-          <p class="number-intolerant">${data.note_intolleranze}</p>
-        </div>`);
-      });
-    });
-  }
-
   // Add an event handler to the assignment buttons
-  $('.assign-btns').change(function () {
+  $('.assign-btns').change(() => {
     // Checked if the "To Assign" button is checked
     if ($('#to-assign').is(':checked')) {
-      // If its checked make the guest list sortable
+      $('#guest-list').html('');
       $('#guest-list').sortable({
         connectWith: '.connectedSortable',
         cursor: 'move',
-        helper(e, div) {
-          this.copyHelper = div.clone().insertAfter(div);
-          $(this).data('copied', false);
-          return div.clone();
-        },
-        stop() {
-          const copied = $(this).data('copied');
-          if (!copied) {
-            this.copyHelper.remove();
-          }
-          this.copyHelper = null;
+        // helper: 'clone',
+        receive(e, ui) {
+          const formData = new FormData();
+          formData.append('user_id', ui.item[0].id);
+          formData.append('tavolo_id', this.dataset.rel);
+
+          // When it gets sorted it updates fl_tavoli
+          fetch('./includes/tables_update.php', {
+            method: 'POST',
+            body: formData,
+          }).catch(err => {
+            console.error(err.message);
+          });
         },
       });
 
-      // Filter guest list to show guests in need of assignment after radio change
-      $.getJSON("./includes/get-guest-to-assign.inc.php", function (response) {
-        $('#guest-list').html("");
-        $('#guest-list').addClass('connectedSortable');
-        response.forEach(function (data) {
-          $('#guest-list').append(`
+      // Fetch users not assigned and show them in guest-list div
+      fetch('./includes/guests_not_assigned.php')
+        .then(response => response.json()) // Translate JSON into JavaScript
+        .then(content => {
+          content.forEach(data => {
+            $('#guest-list').append(`
           <div class="guest" id="${data.id}">
             <p class="family-name">${data.nome} ${data.cognome}</p>
             <p class="number-adults">${data.adulti}</p>
@@ -167,28 +81,35 @@ $(document).ready(() => {
             <p class="number-highchair">${data.seggioloni}</p>
             <p class="number-intolerant">${data.note_intolleranze}</p>
           </div>`);
+          });
+        })
+        .catch(err => {
+          console.error(err.message);
         });
-      });
-      // Filter guest list to show guests assigned after radio change
     } else if ($('#assigned').is(':checked')) {
-      $('#guest-list').sortable("destroy");
-      $('#guest-list').removeClass('connectedSortable');
-      $('#guest-list').removeClass('ui-sortable');
-      $.getJSON("./includes/get-guest-assigned.inc.php", function (response) {
-        $('#guest-list').html("");
-        $('#guest-list').removeClass('connectedSortable');
-        $('#guest-list').removeClass('ui-sortable');
-        response.forEach(function (data) {
-          $('#guest-list').append(`
-          <div class="guest" id="${data.id}">
-            <p class="family-name">${data.nome} ${data.cognome}</p>
-            <p class="number-adults">${data.adulti}</p>
-            <p class="number-babies">${data.bambini}</p>
-            <p class="number-highchair">${data.seggioloni}</p>
-            <p class="number-intolerant">${data.note_intolleranze}</p>
-          </div>`);
+      $('#guest-list').html('');
+
+      // Destroy sortable to prevent users from draggin assigned users into tables
+      $('#guest-list').sortable('destroy');
+
+      // Fetch users assigned and show them in guest-list div
+      fetch('./includes/guests_assigned.php')
+        .then(response => response.json()) // Translate JSON into JavaScript
+        .then(content => {
+          content.forEach(data => {
+            $('#guest-list').append(`
+            <div class="guest" id="${data.id}">
+              <p class="family-name">${data.nome} ${data.cognome}</p>
+              <p class="number-adults">${data.adulti}</p>
+              <p class="number-babies">${data.bambini}</p>
+              <p class="number-highchair">${data.seggioloni}</p>
+              <p class="number-intolerant">${data.note_intolleranze}</p>
+            </div>`);
+          });
+        })
+        .catch(err => {
+          console.error(err.message);
         });
-      });
     }
   });
 });
