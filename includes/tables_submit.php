@@ -2,7 +2,6 @@
   
 if(isset($_POST['submit-table'])) {
   require('../config/db.config.php');
-  require('../config/config.php');
   try {
     $stmt = $conn->prepare('INSERT INTO fl_tavoli (nome_tavolo) VALUES (?)');
     $stmt->bindParam(1, $_POST['nome_tavolo']);
